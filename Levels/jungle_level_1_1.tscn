@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://wv3ntk6bmuc7"]
+
+[ext_resource type="Script" path="res://Levels/jungle_level_1_1.gd" id="1_d6c3w"]
+[ext_resource type="Texture2D" uid="uid://bfmy244oabi0d" path="res://Levels/jungle_deep_background_2.png" id="2_3x4rw"]
+[ext_resource type="PackedScene" uid="uid://bh6oh4nny70ov" path="res://scenes/killzone.tscn" id="2_xxhi7"]
+[ext_resource type="PackedScene" uid="uid://i7n5ist486vr" path="res://scenes/player.tscn" id="3_8a2kq"]
+[ext_resource type="Texture2D" uid="uid://daf11j3lhqt5c" path="res://Levels/vines_and_leaves.png" id="3_g7cbo"]
+[ext_resource type="PackedScene" path="res://Levels/Jungle_tilemap.tscn" id="3_wfl1s"]
+
+[node name="Jungle Level 1-1" type="Node2D"]
+script = ExtResource("1_d6c3w")
+
+[node name="JungleDeepBackground" type="ParallaxBackground" parent="."]
+layer = -10
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="JungleDeepBackground"]
+z_index = -10
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="JungleDeepBackground/ParallaxLayer"]
+z_index = -10
+position = Vector2(-1678, -1130)
+scale = Vector2(4.78255, 3.4043)
+texture = ExtResource("2_3x4rw")
+centered = false
+
+[node name="JungleBackgroundVines" type="ParallaxLayer" parent="JungleDeepBackground"]
+z_index = -10
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="JungleDeepBackground/JungleBackgroundVines"]
+texture_repeat = 2
+position = Vector2(717, 596)
+scale = Vector2(3, 3)
+texture = ExtResource("3_g7cbo")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("3_wfl1s")]
+
+[node name="Killzone" parent="." instance=ExtResource("2_xxhi7")]
+position = Vector2(-5, 655)
+
+[node name="player" parent="." instance=ExtResource("3_8a2kq")]
+position = Vector2(-18, 123)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(1, 9.53674e-07)
+scale = Vector2(2.68, 2.16)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="player_fell" from="Killzone" to="." method="_on_killzone_player_fell"]

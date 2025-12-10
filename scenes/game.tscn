@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc2qs88cch0br"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_g3kcs"]
+[ext_resource type="PackedScene" uid="uid://wv3ntk6bmuc7" path="res://Levels/jungle_level_1_1.tscn" id="2_sjw84"]
+
+[node name="Game" type="Node2D"]
+position = Vector2(81, 325)
+script = ExtResource("1_g3kcs")
+
+[node name="Jungle Level 1-1" parent="." instance=ExtResource("2_sjw84")]
